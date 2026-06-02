@@ -256,12 +256,12 @@ const dotGrid =
     </div>
   </header>
 
-  <!-- ── Hero ── -->
-  <section id="top" class="relative bg-stone-950 text-stone-50 overflow-hidden">
+  <!-- ── Hero (fills the first screen: nav + hero = 100svh) ── -->
+  <section id="top" class="relative bg-stone-950 text-stone-50 overflow-hidden flex items-center min-h-[calc(100svh-4rem)]">
     <div class="absolute inset-0" style={dotGrid}></div>
     <div class="absolute -top-40 -right-32 w-[36rem] h-[36rem] rounded-full bg-emerald-500/20 blur-[120px]"></div>
     <div class="absolute -bottom-48 -left-24 w-[30rem] h-[30rem] rounded-full bg-emerald-700/10 blur-[120px]"></div>
-    <div class="relative max-w-6xl mx-auto px-5 sm:px-6 pt-20 pb-24 lg:pt-28 lg:pb-32 grid lg:grid-cols-[1.05fr_1fr] gap-12 lg:gap-10 items-center">
+    <div class="relative w-full max-w-6xl mx-auto px-5 sm:px-6 py-16 lg:py-20 grid lg:grid-cols-[1.05fr_1fr] gap-12 lg:gap-10 items-center">
       <div>
         <p class="rise font-mono text-[0.7rem] sm:text-xs tracking-[0.18em] text-emerald-400 mb-6" data-i18n="hero.kicker">{en.hero.kicker}</p>
         <h1 class="text-[2.7rem] leading-[1.04] sm:text-6xl lg:text-[4.1rem] font-bold tracking-[-0.03em]">
