@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Markdown from '../components/Markdown';
 import PdfViewer from '../components/PdfViewer';
@@ -61,7 +61,6 @@ export default function LessonPage() {
   const [lesson, setLesson] = useState(null);
   const [course, setCourse] = useState(null);
   const [allLessons, setAllLessons] = useState([]);
-  const [renderTick, setRenderTick] = useState(0);
   const [sessions, setSessions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -165,7 +164,7 @@ export default function LessonPage() {
       window.removeEventListener('resize', compute);
       if (HL_SUPPORTED) CSS.highlights.delete('bloom-ann');
     };
-  }, [sessions, lesson?.content, renderTick]);
+  }, [sessions, lesson?.content]);
 
   // Paint a distinct highlight for the pending (being-asked) selection.
   useEffect(() => {
@@ -269,6 +268,7 @@ export default function LessonPage() {
     if (!composer?.draft.trim() || streaming) return;
     const q = composer.draft.trim();
     const tempId = `tmp-${Date.now()}`;
+    const pdfPos = composer.pdfPosition ? JSON.stringify(composer.pdfPosition) : null;
     const temp = {
       id: tempId,
       original_text: composer.selectedText,
@@ -276,6 +276,7 @@ export default function LessonPage() {
       anchor_top: composer.top,
       position_start: composer.start ?? 0,
       position_end: composer.end ?? composer.selectedText.length,
+      pdf_position: pdfPos,
       messages: [{ role: 'user', content: q }],
     };
     setSessions((prev) => [...prev, temp]);
@@ -299,6 +300,7 @@ export default function LessonPage() {
           comment: q,
           answer_immediately: true,
           anchor_top: temp.anchor_top,
+          pdf_position: pdfPos,
         },
         (chunk) => { streamTextRef.current += chunk; setStreamText((t) => t + chunk); },
         (data) => { finalAnn = data.annotation; },
@@ -322,6 +324,7 @@ export default function LessonPage() {
               original_text: temp.original_text,
               comment: q,
               anchor_top: temp.anchor_top,
+              pdf_position: pdfPos,
               partial_answer: streamTextRef.current,
             });
             setSessions((prev) => prev.map((s) => (s.id === tempId ? ann : s)));
@@ -460,7 +463,16 @@ export default function LessonPage() {
   const isProject = Boolean(course?.is_project);
   const isPdf = Boolean(lesson?.source_filename?.toLowerCase().endsWith('.pdf'));
   const fileUrl = `/api/courses/${courseId}/lessons/${lessonNum}/file`;
-  const handlePdfReady = useCallback(() => setRenderTick((t) => t + 1), []);
+  const handlePdfSelect = ({ text, position, anchorTop }) => {
+    setComposer({ selectedText: text, pdfPosition: position, draft: '', top: anchorTop || 0 });
+  };
+  const handleOpenPdfHighlight = (id) => { setOpenId(id); setCardRect(null); };
+  const pdfHighlights = isPdf
+    ? sessions.flatMap((s) => {
+        if (!s.pdf_position) return [];
+        try { return [{ id: s.id, position: JSON.parse(s.pdf_position) }]; } catch { return []; }
+      })
+    : [];
 
   if (loading) {
     return (
@@ -553,7 +565,12 @@ export default function LessonPage() {
             className="relative bg-white rounded-2xl border border-stone-200/60 shadow-[0_1px_3px_rgba(0,0,0,0.04)] p-8 md:p-10 mb-8"
           >
             {isPdf ? (
-              <PdfViewer ref={proseRef} url={fileUrl} onReady={handlePdfReady} />
+              <PdfViewer
+                url={fileUrl}
+                highlights={pdfHighlights}
+                onSelect={handlePdfSelect}
+                onOpenHighlight={handleOpenPdfHighlight}
+              />
             ) : (
               <div ref={proseRef} className="prose prose-stone prose-lg max-w-none">
                 <Markdown>{lesson?.content}</Markdown>

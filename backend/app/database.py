@@ -32,6 +32,7 @@ def ensure_sqlite_schema():
             "answer": "answer TEXT DEFAULT ''",
             "messages": "messages TEXT DEFAULT ''",
             "anchor_top": "anchor_top INTEGER DEFAULT 0",
+            "pdf_position": "pdf_position TEXT",
         },
     }
 

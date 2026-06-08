@@ -78,6 +78,7 @@ class Annotation(Base):
     answer = Column(Text, default="")
     messages = Column(Text, default="")  # JSON: [{"role": "user"|"assistant", "content": str}]
     anchor_top = Column(Integer, default=0)  # vertical offset (px) within the article, for margin dot
+    pdf_position = Column(Text, nullable=True)  # JSON: PDF 几何高亮 {page, rects:[{x,y,w,h} 归一化 0~1]}
     created_at = Column(DateTime, default=_utcnow)
 
     lesson = relationship("Lesson", back_populates="annotations")

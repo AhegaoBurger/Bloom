@@ -115,6 +115,7 @@ class CreateAnnotationRequest(BaseModel):
     comment: str = Field(..., min_length=1, max_length=5000)
     answer_immediately: bool = False
     anchor_top: int = Field(0, ge=0)
+    pdf_position: str | None = None
 
     @field_validator("position_end")
     @classmethod
@@ -139,6 +140,7 @@ class SaveInterruptedRequest(BaseModel):
     original_text: str = Field("", max_length=5000)
     comment: str = Field("", max_length=5000)
     anchor_top: int = Field(0, ge=0)
+    pdf_position: str | None = None
     question: str = Field("", max_length=5000)
     partial_answer: str = Field("", max_length=100000)
 
@@ -153,6 +155,7 @@ class AnnotationResponse(BaseModel):
     answer: str = ""
     messages: list[AnnotationMessage] = []
     anchor_top: int = 0
+    pdf_position: str | None = None
     created_at: datetime
 
     model_config = {"from_attributes": True}

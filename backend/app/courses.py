@@ -595,6 +595,7 @@ def _annotation_to_response(annotation: Annotation) -> AnnotationResponse:
         answer=annotation.answer or "",
         messages=_load_messages(annotation),
         anchor_top=annotation.anchor_top or 0,
+        pdf_position=annotation.pdf_position,
         created_at=annotation.created_at,
     )
 
@@ -1022,6 +1023,7 @@ def create_annotation(
     lesson_id = lesson.id
     pos_start, pos_end, anchor_top = req.position_start, req.position_end, req.anchor_top
     original_text, comment = req.original_text, req.comment
+    pdf_position = req.pdf_position
     cid, lnum = course_id, lesson_num
 
     def generate():
@@ -1043,6 +1045,7 @@ def create_annotation(
                 answer=answer,
                 messages=json.dumps(full_history, ensure_ascii=False),
                 anchor_top=anchor_top,
+                pdf_position=pdf_position,
             )
             db.add(annotation)
             _record_event(db, cid, "annotation_answered", lesson_number=lnum)
@@ -1160,6 +1163,7 @@ def save_interrupted_annotation(
             answer=text,
             messages=json.dumps(full_history, ensure_ascii=False),
             anchor_top=req.anchor_top,
+            pdf_position=req.pdf_position,
         )
         db.add(annotation)
     else:
