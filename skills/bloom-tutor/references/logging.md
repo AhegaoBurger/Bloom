@@ -1,60 +1,60 @@
-# 学习日志 与 渐进式加载
+# Learning Log and Progressive Loading
 
-`learning-log.jsonl` 位于工作根目录，仅追加、绝不覆盖或修改已有条目。
+`learning-log.jsonl` lives in the working root directory; it is append-only and existing entries must never be overwritten or modified.
 
-## `/整理学习` — 记录增量学习到日志
+## `/organize learning` — Record Incremental Learning to the Log
 
-**触发词：** `/整理学习`、「整理最近学到的东西」、「记录一下学习日志」
+**Trigger words:** `/organize learning`, "log what I've learned recently", "record a learning-log entry"
 
-**步骤：**
+**Steps:**
 
-1. **读取日志基线**：读根目录 `learning-log.jsonl`，取最后一条记录的 `date` 和 `courses`（各课题最后读到哪篇）
-2. **扫描所有课题文件夹**：列出根目录下所有子文件夹（排除隐藏目录和 `.templates`），对每个课题：
-   - 列出所有 `XX.md`（排除 `syllabus.md`、`summary.md`）
-   - 与基线对比，找出**新增的文档**（上次记录之后完成的）
-   - 读取这些新文档，提炼 3-5 个核心概念/知识点
-3. **生成日志条目**：构造以下单行 JSON，**追加**到 `learning-log.jsonl`：
+1. **Read the log baseline**: read the root-level `learning-log.jsonl` and take the `date` and `courses` from the last entry (which article each topic was last read up to)
+2. **Scan all topic folders**: list every subfolder under the root directory (excluding hidden directories and `.templates`), and for each topic:
+   - List all `XX.md` files (excluding `syllabus.md` and `summary.md`)
+   - Compare against the baseline to find the **newly added documents** (those completed since the last entry)
+   - Read these new documents and distill 3-5 core concepts / key points
+3. **Generate a log entry**: build the following single-line JSON and **append** it to `learning-log.jsonl`:
 
 ```json
 {
   "date": "YYYY-MM-DD",
   "courses": [
     {
-      "name": "课题名称（文件夹名）",
+      "name": "topic name (folder name)",
       "new_docs": ["02.md", "03.md"],
-      "key_concepts": ["概念1", "概念2", "概念3"],
-      "progress": "已完成 X 篇，共 Y 篇"
+      "key_concepts": ["concept 1", "concept 2", "concept 3"],
+      "progress": "X of Y articles completed"
     }
   ],
-  "summary": "一句话总结本次学习增量",
+  "summary": "one-sentence summary of this learning increment",
   "total_new_docs": 0
 }
 ```
 
-4. **向用户展示摘要**：用用户所用的语言简洁展示本次新增了哪些课题的哪些内容，不重复 JSON 原文
+4. **Show the user a summary**: in the user's language, concisely present which new content was added to which topics, without repeating the raw JSON
 
-**规则：**
-- 只追加，绝不覆盖或修改已有条目
-- 无任何新增文档时也追加一条，`total_new_docs` 为 0，`summary` 写「本期无新增学习内容」
-- 第一次运行（日志为空）时，扫描所有现有文档作为初始基线，`summary` 写「初始化学习日志」
+**Rules:**
+- Append only; never overwrite or modify existing entries
+- Even when there are no new documents, still append an entry with `total_new_docs` set to 0 and `summary` set to "No new learning content this period"
+- On the first run (empty log), scan all existing documents to establish the initial baseline and set `summary` to "Initialize learning log"
 
-## `/查看学习日志` — 回顾历史
+## `/view learning log` — Review History
 
-**触发词：** `/查看学习日志`、「我最近学了什么」、「回顾一下学习记录」
+**Trigger words:** `/view learning log`, "what have I learned recently", "review my learning history"
 
-**步骤：**
-1. 读取根目录 `learning-log.jsonl` 全部条目
-2. 以时间倒序（最新在前），用用户所用的语言格式化展示：日期、课题、新增文档数、核心概念
+**Steps:**
+1. Read all entries from the root-level `learning-log.jsonl`
+2. In reverse chronological order (newest first), format and present, in the user's language: date, topic, number of new documents, and core concepts
 
-## 渐进式加载原则
+## Progressive-Loading Principle
 
-`learning-log.jsonl` 是了解学习状态的**第一入口**。当用户问「我最近学了什么」「进度怎样」或任何需要了解学习状态的场景：
+`learning-log.jsonl` is the **first entry point** for understanding the learning state. Whenever the user asks "what have I learned recently," "how's my progress," or anything else that requires knowing the learning state:
 
-1. **先读 `learning-log.jsonl`** —— 它记录了所有课题的最新进度、已完成文档、核心概念摘要
-2. **日志足够时不主动展开具体文档**，直接基于日志回答
-3. **只在以下情况才下钻具体文档**：
-   - 用户对某概念有疑问，需查看原文细节
-   - 用户明确要求「帮我看看 XX 课题的第 N 篇」
-   - 日志信息不足以回答，且已向用户说明需要深入查看
+1. **Read `learning-log.jsonl` first** — it records the latest progress of every topic, the completed documents, and a summary of core concepts
+2. **When the log is enough, don't proactively open specific documents** — answer directly from the log
+3. **Only drill down into specific documents when**:
+   - The user has a question about a concept and you need the original detail
+   - The user explicitly asks "help me look at article N of topic XX"
+   - The log alone can't answer, and you've told the user you need to look deeper
 
-> 先从最轻量的摘要层（日志）开始，有需要再向下钻取具体文档，而不是一次性加载所有课题内容。
+> Start from the lightest summary layer (the log), and drill down into specific documents only when needed, rather than loading all topic content at once.

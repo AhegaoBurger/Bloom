@@ -1,60 +1,60 @@
-# 课程大纲 `syllabus.md` 规则
+# Course Syllabus `syllabus.md` Rules
 
-**核心哲学：学习目标固定，学习路径弹性。**
+**Core philosophy: fixed learning objectives, flexible learning path.**
 
-- 大纲规定的是**学完这门课你能做什么**，而不是「第 01 篇讲什么、第 02 篇讲什么」
-- 文档数量不做任何限制 —— 有的人 4 篇学完，有的人需要 10 篇，完全取决于起点和节奏
-- 大纲中的每一条学习成果，都是可被验证的具体能力，而不是模糊的「了解/理解」
-- 大纲支持三种学习深度：**简单**、**标准**、**深入**。用户未指定时，默认使用**标准**。
+- The syllabus specifies **what you'll be able to do once you finish this course**, not "what article 01 covers, what article 02 covers"
+- There's no limit on the number of documents — some people finish in 4 articles, others need 10; it depends entirely on their starting point and pace
+- Every learning outcome in the syllabus is a specific, verifiable ability, not a vague "know about / understand"
+- The syllabus supports three learning depths: **simple**, **standard**, **deep**. When the user doesn't specify one, default to **standard**.
 
-## 格式
+## Format
 
 ```markdown
-# [课题名] · 课程大纲
+# [Topic Name] · Course Syllabus
 
-> 这份大纲定义了完成本课题后你将掌握的所有能力。
-> 学习深度：[简单 / 标准 / 深入]
-> 文档数量因人而异，但掌握内容不打折扣。
+> This syllabus defines all the abilities you'll master after completing this topic.
+> Learning depth: [simple / standard / deep]
+> The number of documents varies from person to person, but the mastery content is not compromised.
 
-## 核心掌握项
+## Core Mastery Items
 
-完成本课题后，你将能够：
+After completing this topic, you will be able to:
 
-### [模块一名称]
-- [ ] [具体能力描述，用「能够……」句式，可验证]
-- [ ] [具体能力描述]
+### [Module One Name]
+- [ ] [specific ability description, phrased as "be able to …", verifiable]
+- [ ] [specific ability description]
 
-### [模块二名称]
-- [ ] [具体能力描述]
-- [ ] [具体能力描述]
+### [Module Two Name]
+- [ ] [specific ability description]
+- [ ] [specific ability description]
 
-（按知识模块分组，每条用 checkbox 表示，学完后可勾选）
+(grouped by knowledge module, each item a checkbox to be checked off after learning)
 
-## 不在本课题范围内
+## Not in Scope for This Topic
 
-- [明确列出哪些相关主题本课不涵盖，避免预期错位]
+- [explicitly list which related topics this course does not cover, to avoid mismatched expectations]
 
-## 学习进度
+## Learning Progress
 
-| 文档 | 覆盖掌握项 | 生成日期 |
+| Document | Mastery Items Covered | Date Generated |
 |------|-----------|---------|
-| （每次生成新文档后自动追加一行） |
+| (a row is appended automatically after each new document is generated) |
 ```
 
-## 生成大纲的要求
+## Requirements for Generating the Syllabus
 
-1. 所有掌握项必须是**可验证的行为**（能解释、能推导、能应用、能判断），禁止写「了解 X」「熟悉 Y」这类无法验证的表述
-2. 学习深度决定大纲展开范围：
-   - **简单**：2-3 个模块，8-10 条掌握项；聚焦主干、最低必要概念和高频应用
-   - **标准**：3-4 个模块，10-12 条掌握项；覆盖核心概念、关键推理、典型应用和常见误区
-   - **深入**：4-5 个模块，12-15 条掌握项；加入第一性原理、底层机制、边界条件、反例和迁移判断
-3. 模块必须按知识的内在逻辑组织，不超过 5 个
-4. **「不在本课题范围内」必须填写**，帮用户建立清晰的边界预期
+1. Every mastery item must be a **verifiable behavior** (can explain, can derive, can apply, can judge); banned are unverifiable phrasings like "know about X" or "be familiar with Y"
+2. The learning depth determines how far the syllabus expands:
+   - **Simple**: 2-3 modules, 8-10 mastery items; focus on the main thread, the minimum necessary concepts, and high-frequency applications
+   - **Standard**: 3-4 modules, 10-12 mastery items; cover the core concepts, key reasoning, typical applications, and common pitfalls
+   - **Deep**: 4-5 modules, 12-15 mastery items; add first principles, underlying mechanisms, boundary conditions, counterexamples, and transfer judgment
+3. Modules must be organized by the knowledge's inherent logic, and number no more than 5
+4. **"Not in Scope for This Topic" must be filled in**, to help the user form a clear sense of the boundaries
 
-## 大纲与文档的联动
+## Linkage Between the Syllabus and the Documents
 
-- 每篇新文档生成**前**，检查大纲中哪些掌握项尚未被覆盖，确保整体进度不偏航；每篇内容应能对应大纲中至少一条掌握项，不生成与大纲无关的内容
-- 每篇新文档生成**后**，必须立即更新本文件：
-  1. 将本篇覆盖的掌握项对应的 `[ ]` 改为 `[x]`
-  2. 在「## 学习进度」表格追加一行：文档编号、覆盖的掌握项（简短列举）、生成日期
-- 当所有掌握项全部变为 `[x]` 时，**不直接生成 `summary.md`**，而是先生成「评估篇」（见 `articles.md`）
+- **Before** generating each new document, check which mastery items in the syllabus aren't yet covered, to keep overall progress on course; each article's content should map to at least one mastery item in the syllabus, and don't generate content unrelated to the syllabus
+- **After** generating each new document, you must immediately update this file:
+  1. Change the `[ ]` for the mastery items this article covers to `[x]`
+  2. Append a row to the "## Learning Progress" table: document number, mastery items covered (a short list), and date generated
+- When all mastery items have turned to `[x]`, **do not generate `summary.md` directly**; instead generate the "assessment article" first (see `articles.md`)

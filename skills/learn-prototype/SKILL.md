@@ -1,43 +1,43 @@
 ---
 name: learn-prototype
-description: 当用户要做/研究一个东西、想提升某个技能、或觉得某个产出不够好想改进时使用。用「改良主义」先逼出一个最垃圾但能跑的原型，再引导他自己洞察缺陷、提出问题，提改良假说→实践检验→迭代，信奉「洞察缺陷 > 如何优化 > 最终答案」，并把每次改进的方法本身沉淀成方法论。触发场景：要做 X、研究 X、提升 X、X 做得不好想改进、怎么优化 X、不知从哪下手做。
+description: Use when the user wants to build/research something, wants to level up a skill, or feels a piece of work isn't good enough and wants to improve it. Applies "improvementism": force out the ugliest-but-runnable prototype first, then guide them to spot the flaws themselves, raise their own questions, propose improvement hypotheses → test in practice → iterate. It lives by "spotting flaws > how to optimize > the final answer," and distills the method behind each improvement into methodology. Triggers: build X, research X, level up X, X isn't good and I want to improve it, how do I optimize X, don't know where to start on X.
 ---
 
-# 改良主义学习法（learn-prototype）
+# Improvementism Learning (learn-prototype)
 
-> 核心信条：**洞察缺陷 > 如何优化 > 最终答案。** 试图洞察缺陷、自己提出问题，永远不要害怕问题多简单。学习要努力，但要做**有效的努力**。
+> Core creed: **spotting flaws > how to optimize > the final answer.** Try to spot flaws and raise your own questions, and never be afraid of how simple a question is. Learning takes effort, but it has to be **effective effort**.
 
-## 何时用
+## When to use
 
-用户要动手做 / 研究一个东西，或想把某个已有产出改得更好。这是"重输入、轻输出"短板的**解药**——逼用户从输入切到输出。
+The user wants to build / research something hands-on, or wants to take an existing piece of work and make it better. This is the **antidote** to the "heavy input, light output" weakness—it forces the user to switch from input to output.
 
-## 流程（教练模式：引导用户做和提问，不替他做）
+## Flow (coaching mode: guide the user to do and to ask; don't do it for them)
 
-### 第一步：先做最垃圾的原型
+### Step 1: Build the ugliest prototype first
 
-别追求完美，先有一个**能跑 / 能看的最小版本**。卡在"还没准备好"就是没进改良主义。
+Don't chase perfection—get a **minimal version that runs / that you can look at**. Getting stuck on "I'm not ready yet" means you're not doing improvementism.
 
-### 第二步：引导用户自己洞察缺陷
+### Step 2: Guide the user to spot the flaws themselves
 
-**关键且不能代劳**：问他"这哪里不好？为什么不好？"哪怕问题很简单。把"自己提问"的动作交给用户——这是能力泛化的来源。你可以追问、补他没看到的角度，但**先让他提**。
+**Critical, and not something you can do for them**: ask "What's bad here? Why is it bad?"—no matter how simple the question. Hand the act of "asking your own questions" to the user—that's where the ability generalizes from. You can follow up and add angles they missed, but **let them raise it first**.
 
-### 第三步：提改良假说 → 实践 → 检验
+### Step 3: Propose an improvement hypothesis → practice → test
 
-针对缺陷提一个改良策略（视为假说，可对可错），动手改，看效果。错了也有用——错误暴露后，下次自动规避这个方向。
+For a given flaw, propose one improvement strategy (treat it as a hypothesis, right or wrong), make the change, and see the effect. Being wrong is useful too—once an error is exposed, you'll automatically steer clear of that direction next time.
 
-### 第四步：迭代 / 推翻
+### Step 4: Iterate / tear down
 
-循环②③，直到无法再优化 → 推翻重做。允许"不正确但有用的版本"——能解决当前问题就够了，不必一开始追求完美架构。
+Loop ②③ until you can't optimize further → tear it down and rebuild. Allow "incorrect but useful versions"—solving the current problem is enough; you don't need a perfect architecture from the start.
 
-### 第五步：沉淀方法论
+### Step 5: Distill the methodology
 
-把"这次怎么从 A 改到 B"的**方法本身**记一笔（每个解决的问题都成为后续的法则）。改得越多，方法越泛化，提问越准。
+Take a note on the **method itself** behind "how I got from A to B this time" (every problem you solve becomes a rule for later). The more you improve, the more the method generalizes and the sharper your questions get.
 
-## 注意
+## Notes
 
-> ⚠️ **铁律·只用确证的已会知识**：判断用户「已经会什么」只能用他**确证学过**的知识（亲口确认或可靠背景）；**严禁**把「正在讲的材料 / 文章作者背景 / 对话里别人的知识」当成用户会的。拿不准 → 直接问「⚠️ 你学过 ___ 吗？」，绝不替他假设。
+> ⚠️ **Ironclad rule · only build on confirmed, already-known knowledge**: to judge "what the user already knows," you may only use knowledge they've **confirmably learned** (personally confirmed or from reliable background); it is **strictly forbidden** to treat "the material currently being taught / the article author's background / knowledge someone else in the conversation has" as something the user knows. When unsure → just ask "⚠️ Have you learned ___?", and never assume on their behalf.
 
-- **别替用户提问、别替他做**——那会废掉这个 skill 的核心价值。引导 > 代劳。
-- 提问命中要害需要基本素质，但素质靠迭代泛化，所以"先开始"比"先够格"重要。
-- 缺前置知识改不动 → 转 `learn-graph`；想确认是否真懂 → 转 `learn-feynman`。
-- 同族 skill：`learn-occam` `learn-crossover` `learn-graph` `learn-feynman`。
+- **Don't ask the questions for the user, don't do it for them**—that guts this skill's core value. Guide > do it for them.
+- Asking questions that hit the mark takes some baseline skill, but that skill comes from iterating and generalizing, so "just start" matters more than "be qualified first."
+- Missing prerequisite knowledge and can't make progress → switch to `learn-graph`; want to confirm whether they truly understand → switch to `learn-feynman`.
+- Sibling skills: `learn-occam` `learn-crossover` `learn-graph` `learn-feynman`.

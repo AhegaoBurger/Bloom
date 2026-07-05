@@ -1,46 +1,46 @@
 ---
 name: learn-graph
-description: 当用户要系统学一个新领域、不知道从哪入手、或担心「学得不够系统」时使用。用「知识图谱学习法」和用户一起构建该领域的概念/用途/父子节点图谱（自己建图的过程本身就是学习），标出复用价值最高的节点和「从常识就能入门的点」，给出有效学习路径并回答「学到哪算够」。触发场景：系统学 X 领域、从哪开始学、学得不系统、想要 X 的全貌、规划学习路径、这个领域有多大。
+description: Use when the user wants to systematically learn a new field, doesn't know where to start, or worries their learning "isn't systematic enough." Together with the user, build a knowledge graph of the field's concepts/uses/parent-child nodes using the "knowledge-graph learning method" (the act of building the graph yourself IS the learning), flag the nodes with the highest reuse value and the "points you can enter from common sense alone," lay out an effective learning path, and answer "how much is enough." Triggers: learn field X systematically, where do I start, my learning feels unsystematic, I want the full picture of X, plan a learning path, how big is this field.
 ---
 
-# 知识图谱学习法（learn-graph）
+# Knowledge-Graph Learning Method (learn-graph)
 
-> 核心信条：**自己一步步建图谱的过程，本身就是最有效的学习——不要直接套用别人给的图谱。** 绝大部分知识，都有一个从常识就能入门的点。
+> Core creed: **The process of building the graph yourself, step by step, IS the most effective learning—don't just adopt someone else's ready-made graph.** For almost any body of knowledge, there's a point where common sense alone is enough to get you in the door.
 
-## 何时用
+## When to use
 
-用户要系统进入一个新领域，或焦虑"学得不够系统 / 不知何时算够"。
+The user wants to systematically break into a new field, or is anxious about "not learning systematically enough / not knowing when they've done enough."
 
-## 流程（关键：和用户一起建，不是直接灌一张完整图）
+## Process (the key: build it *with* the user, don't just hand over one finished graph)
 
-### 第一步：锁定目标领域 X 和目的
+### Step 1: Pin down the target field X and the goal
 
-用户为什么学 X？（接 `learn-occam` 的"既定问题"）目的决定图谱画到多细。
+Why is the user learning X? (Picks up from the "established problem" in `learn-occam`.) The goal decides how fine-grained the graph needs to be.
 
-### 第二步：构建图谱——只抓三件事
+### Step 2: Build the graph—capture just three things
 
-**概念/名称 · 用途 · 上下文关系（父子节点）**：
+**Concept/name · use · contextual relationships (parent-child nodes)**:
 
-- 子节点 = X 依托 / 基于什么；父节点 = X 服务于什么目标。
-- **以提问引导用户一起填**（自己建图才学得到），别一次性灌完。先给骨架，留节点让他补。
+- Child node = what X rests on / is built upon; parent node = what goal X serves.
+- **Fill it in together by asking questions** (you only learn by building the graph yourself)—don't dump it all at once. Give the skeleton first, and leave nodes for the user to fill in.
 
-### 第三步：标注两个关键
+### Step 3: Mark the two key things
 
-- **复用价值**：哪些节点父节点多（像 Python）→ 优先学，回报最高。
-- **入门点**：哪个节点"从常识就能入门"→ 学习路径的起点。
+- **Reuse value**: which nodes have many parents (like Python) → learn these first, the payoff is highest.
+- **Entry point**: which node "can be entered from common sense alone" → the starting point of the learning path.
 
-### 第四步：输出学习路径 + 颗粒度
+### Step 4: Output the learning path + granularity
 
-从入门点出发、沿父子关系排一条有效路径。颗粒度按需自由切换（领域图 → 细分学科图）。"学到哪算够"= 覆盖到能解决第一步那个目的的节点即可，不必学满。
+Starting from the entry point, lay out one effective path along the parent-child relationships. Switch granularity freely as needed (field-level graph → sub-discipline graph). "How much is enough" = it's enough to cover the nodes that solve the goal from Step 1; you don't have to learn all of it.
 
-### 第五步：交接
+### Step 5: Handoff
 
-- 拿不准某节点是不是缺前置知识 → 这正是图谱的强项，已在图上标出。
-- 找到入门点要动手 → 转 `learn-prototype`（在图上找"最垃圾原型"的起点）。
+- Not sure whether a node is missing prerequisite knowledge → this is exactly the graph's strength, and it's already marked on the graph.
+- Found the entry point and it's time to get hands-on → switch to `learn-prototype` (find the "crappiest prototype" starting point on the graph).
 
-## 注意
+## Notes
 
-> ⚠️ **铁律·只用确证的已会知识**：判断用户「已经会什么」只能用他**确证学过**的知识（亲口确认或可靠背景）；**严禁**把「正在讲的材料 / 文章作者背景 / 对话里别人的知识」当成用户会的。拿不准 → 直接问「⚠️ 你学过 ___ 吗？」，绝不替他假设。
+> ⚠️ **Ironclad rule · Only use confirmed, already-known knowledge**: To judge what the user "already knows," you may only use knowledge they've **confirmably learned** (either stated in their own words or a reliable background); it is **strictly forbidden** to treat "the material currently being taught / the article author's background / someone else's knowledge in the conversation" as something the user knows. Not sure → just ask "⚠️ Have you learned ___?"—never assume on their behalf.
 
-- 强调"自己建"：多用提问让用户参与，别炫一张完美的图。
-- 同族 skill：`learn-occam`(该不该学) `learn-crossover`(已会什么) `learn-prototype`(动手) `learn-feynman`(自查)。
+- Emphasize "build it yourself": use questions to keep the user involved, don't show off one perfect graph.
+- Sibling skills: `learn-occam` (should you learn it) `learn-crossover` (what you already know) `learn-prototype` (get hands-on) `learn-feynman` (self-check).
